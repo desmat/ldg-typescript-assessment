@@ -1,6 +1,8 @@
 
 .App {
   text-align: center;
+  height: 100vh;
+
 }
 
 .App a {
@@ -10,7 +12,8 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  height: 100vh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,4 +24,45 @@
 
 .ldg-logo {
   height: 40vmin;
+}
+
+.ldg-logo-nav {
+  height: 5vmin;
+}
+
+.Page {
+  height: 100vh;
+}
+
+.Page-header, .Page-footer {
+  background: #282c34;
+  color: white;
+}
+
+.Page-body {
+  background: purple;
+  height: 100vh;
+  overflow: scroll;
+
+  background-color: white;
+  /* min-height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: calc(10px + 2vmin);
+  color: #282c34;
+}
+
+.Page-body > div {
+  padding: 0.5rem;
+}
+
+.Dashboard {
+  text-align: left;
+
+}
+
+.About {
+  margin: auto;
 }

@@ -2,9 +2,9 @@ import '../index.css';
 
 function NotFound() {
   return (
-    <div className="Page">
-      <header className="Page-header">
-        <p>
+    <div className="NotFound">
+      <header className="_Page-header">
+        <p className="p-4">
           404 Not Found
         </p>
       </header>

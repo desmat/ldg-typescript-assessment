@@ -1,16 +1,14 @@
-import { Link } from 'react-router-dom';
-import Logo from '../components/Logo';
 import '../index.css';
+import Logo from '../components/Logo';
 
 function About() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Logo fill="white" height="15rem" />
-        <p>
+    <div className="About">
+      <header className="_App-header">
+        <Logo fill="#282c34" height="15rem"/>
+        <p className="p-4">
           About page
         </p>
-        <Link to="/">Back</Link>
       </header>
     </div>
   );
