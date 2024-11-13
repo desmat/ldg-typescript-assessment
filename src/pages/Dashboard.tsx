@@ -1,6 +1,3 @@
-import '../App.css';
-import Logo from '../components/Logo';
-
 function Dashboard() {
   return (
     <div className="Dashboard">

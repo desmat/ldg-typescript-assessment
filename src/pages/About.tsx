@@ -1,4 +1,3 @@
-import '../index.css';
 import Logo from '../components/Logo';
 
 function About() {

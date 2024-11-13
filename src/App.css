@@ -6,7 +6,11 @@
 }
 
 .App a {
-  color: white;
+  color: #282c34;
+  text-decoration: none;
+}
+
+.App a:hover {
   text-decoration: underline;
 }
 
@@ -22,12 +26,8 @@
   color: white;
 }
 
-.ldg-logo {
-  height: 40vmin;
-}
-
-.ldg-logo-nav {
-  height: 5vmin;
+.Nav *, .Nav a {
+  color: white;
 }
 
 .Page {
@@ -60,9 +60,8 @@
 
 .Dashboard {
   text-align: left;
-
 }
 
-.About {
+.About, .NotFound {
   margin: auto;
 }
