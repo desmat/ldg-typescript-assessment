@@ -2,7 +2,7 @@ import Stack from 'react-bootstrap/Stack';
 import NavFooter from './NavFooter';
 import NavHeader from './NavHeader';
 
-function Layout({
+export default function Layout({
   children,
 }: {
   children: React.ReactNode
@@ -21,5 +21,3 @@ function Layout({
     </Stack>
   );
 }
-
-export default Layout;

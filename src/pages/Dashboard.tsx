@@ -7,21 +7,22 @@ import BitcoinVolumeOverPriceSpread from "../components/charts/BitcoinVolumeOver
 import { Stack } from "react-bootstrap";
 
 export default function Dashboard() {
-  const { query: binanceQuery } = useBinance();
+  const { query: binanceQuery, reload: reloadBinance } = useBinance();
   const { query: fakerapiQuery } = useFakerApi();
   console.log("pages.Dashboard", { binanceQuery, fakerapiQuery });
 
   return (
-    <div className="Dashboard">
-      <Stack gap={3} className="">
-        {!binanceQuery.isFetched &&
-          <p><i>Loading...</i></p>
-        }
+    <div className="Dashboard" style={{ width: "100%" }}>
+      <Stack gap={3} className="d-flex justify-content-center" style={{ width: "100%" }}>
         {binanceQuery.error &&
           <p><i>Error: {binanceQuery.error}</i></p>
         }
-        {binanceQuery.isFetched && !binanceQuery.error &&
-          <BitcoinClosingPrices data={binanceQuery.data.prices30days} />
+        {!binanceQuery.error &&
+          <BitcoinClosingPrices
+            data={binanceQuery.data?.prices30days}
+            reload={reloadBinance}
+            loading={!binanceQuery.isFetched}
+          />
         }
 
         {!binanceQuery.isFetched &&

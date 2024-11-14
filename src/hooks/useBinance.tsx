@@ -1,5 +1,6 @@
 import {
   useQuery,
+  useQueryClient,
 } from '@tanstack/react-query';
 
 export default function useBinance({
@@ -15,6 +16,8 @@ export default function useBinance({
     interval: "1d",
     limit: 180,
   }): any {
+  const queryClient = useQueryClient();
+
   const query = useQuery({
     queryKey: ["klines", symbol, interval, limit],
     staleTime: 5000, // TODO: find appropriate value
@@ -51,5 +54,10 @@ export default function useBinance({
     }
   });
 
-  return { query };
+  const reload = () => {
+    // console.log("hooks.useBinance reload", { });
+    queryClient.resetQueries({ queryKey: ["klines", symbol, interval, limit] });
+  }
+
+  return { query, reload };
 }

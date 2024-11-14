@@ -1,6 +1,6 @@
-function Logo({ fill, height }: { fill?: string, height?: string}) {
+export default function Logo({ fill, height }: { fill?: string, height?: string}) {
 	return (
-			<svg style={{ height }} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 400.502 761.355" enable-background="new 0 0 400.502 761.355">
+			<svg style={{ height }} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 400.502 761.355">
 				<path fill={fill} d="M0,7.8813c0,0,146.5889-30.1104,215.2314,27.3745C298.9688,105.3813,352.2656,207.957,379.5,468.8813
 	c21.6582,207.5,21,257.5,21,257.5s-5.3643,5.2061-14,5.5c-12.1064,0.4121-15.4053-3.0283-15.4053-3.0283L329,560.3813l-25.5-1
 	c0,0,17.1426,77.165,23.5293,100.7881c0,0-38.2227-2.416-51.8145,18.0869c-13.8135,20.8379-18.7344,39.0361-43.4648,57.625
@@ -15,5 +15,3 @@ function Logo({ fill, height }: { fill?: string, height?: string}) {
 			</svg>
 	)
 }
-
-export default Logo;

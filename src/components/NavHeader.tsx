@@ -2,7 +2,7 @@ import Stack from 'react-bootstrap/Stack';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
 
-function NavHeader() {
+export default function NavHeader() {
   return (
     <div className="Nav NavHeader">
       <Stack direction="horizontal" gap={0}>
@@ -21,5 +21,3 @@ function NavHeader() {
     </div>
   );
 }
-
-export default NavHeader;

@@ -66,7 +66,17 @@
   margin: auto;
 }
 
-.Chart .card-title {
+.DashboardCard .card .card-title {
   font-size: 100%;
   font-weight: bold
+}
+
+.DashboardCard .card {
+  max-width: 1000px;
+}
+
+.DashboardCard .card .card-text {
+  width: calc(100vw - 64px); /* 16px either side, inside and outside card */
+  min-width: 400px;
+  max-width: calc(1000px - 32px); /* 16px either side */
 }
