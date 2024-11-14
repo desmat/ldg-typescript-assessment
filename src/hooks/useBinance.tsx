@@ -49,7 +49,7 @@ export default function useBinance({
         volume180days: data
           .sort((a: any[], b: any[]) => a[0] - b[0])
           .splice(data.length - 180, data.length)
-          .map((entry: any[]) => [parseFloat(entry[5]), (entry[2] - entry[3]) / entry[2]]),
+          .map((entry: any[]) => [parseFloat(entry[5]), (entry[2] - entry[3]) / entry[2] * 100]),
       }
     }
   });

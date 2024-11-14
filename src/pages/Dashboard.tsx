@@ -25,14 +25,15 @@ export default function Dashboard() {
           />
         }
 
-        {!binanceQuery.isFetched &&
-          <p><i>Loading...</i></p>
-        }
         {binanceQuery.error &&
           <p><i>Error: {binanceQuery.error}</i></p>
         }
-        {binanceQuery.isFetched && !binanceQuery.error &&
-          <BitcoinVolumeOverPriceSpread data={binanceQuery.data.volume180days} />
+        {!binanceQuery.error &&
+          <BitcoinVolumeOverPriceSpread
+            data={binanceQuery.data?.volume180days}
+            reload={reloadBinance}
+            loading={!binanceQuery.isFetched}
+          />
         }
 
         {!fakerapiQuery.isFetched &&
