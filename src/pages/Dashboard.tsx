@@ -2,13 +2,13 @@ import useBinance from "../hooks/useBinance";
 import useFakerApi from "../hooks/useFakerApi";
 
 import BitcoinClosingPrices from "../components/charts/BitcoinClosingPrices";
-import FakeapiData from "../components/charts/FakerApiData";
+import FakeapiData from "../components/grids/FakerApiData";
 import BitcoinVolumeOverPriceSpread from "../components/charts/BitcoinVolumeOverPriceSpread";
 import { Stack } from "react-bootstrap";
 
 export default function Dashboard() {
   const { query: binanceQuery, reload: reloadBinance } = useBinance();
-  const { query: fakerapiQuery } = useFakerApi();
+  const { query: fakerapiQuery, reload: reloadFakerApi, add: addFakerApiRow } = useFakerApi();
   console.log("pages.Dashboard", { binanceQuery, fakerapiQuery });
 
   return (
@@ -20,8 +20,8 @@ export default function Dashboard() {
         {!binanceQuery.error &&
           <BitcoinClosingPrices
             data={binanceQuery.data?.prices30days}
-            reload={reloadBinance}
             loading={!binanceQuery.isFetched}
+            reload={reloadBinance}
           />
         }
 
@@ -31,19 +31,21 @@ export default function Dashboard() {
         {!binanceQuery.error &&
           <BitcoinVolumeOverPriceSpread
             data={binanceQuery.data?.volume180days}
-            reload={reloadBinance}
             loading={!binanceQuery.isFetched}
+            reload={reloadBinance}
           />
         }
 
-        {!fakerapiQuery.isFetched &&
-          <p><i>Loading...</i></p>
-        }
         {fakerapiQuery.error &&
           <p><i>Error: {fakerapiQuery.error}</i></p>
         }
-        {fakerapiQuery.isFetched && !fakerapiQuery.isError &&
-          <FakeapiData data={fakerapiQuery.data} />
+        {!fakerapiQuery.isError &&
+          <FakeapiData
+           data={fakerapiQuery.data} 
+           loading={!fakerapiQuery.isFetched}
+           reload={reloadFakerApi}
+           add={addFakerApiRow}
+           />
         }
       </Stack>
     </div>

@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ag-grid-community/core": "latest",
+    "@ag-grid-community/client-side-row-model": "latest",
+    "@ag-grid-community/styles": "latest",
+    "@ag-grid-community/react": "latest",
     "@tanstack/react-query": "^5.59.20",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.119",

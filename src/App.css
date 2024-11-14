@@ -80,3 +80,37 @@
   min-width: 400px;
   max-width: calc(1000px - 32px); /* 16px either side */
 }
+
+/* 
+  note: very tricky to get scrolling working inside cards: 
+  careful with min/max height/width and overlfow 
+*/
+
+.Grid {
+  min-height: 200px;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.Grid .ag-root-wrapper-body, .Grid .ag-root-wrapper-body.ag-layout-normal {
+  height: 100%;
+}
+
+.Grid .ag-root-wrapper {
+  min-width: 2500px;
+}
+
+.Grid .ag-body-viewport {
+  max-height: 400px;
+}
+
+.Grid .ag-cell.align-center {
+  display: flex;
+  justify-content: center;
+}
+
+.Grid .ag-cell.align-right {
+    display: flex;
+    justify-content: end;
+}

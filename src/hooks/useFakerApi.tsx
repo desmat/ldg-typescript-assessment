@@ -1,51 +1,86 @@
 import {
   useQuery,
+  useQueryClient,
 } from '@tanstack/react-query';
+
+const fakerApiDefaultQuantity = 10
+const fakerApiUrl = (quantity?: number) => `https://fakerapi.it/api/v2/custom?_quantity=${quantity || fakerApiDefaultQuantity}&company=company_name&country=country&state=state&city=city&zipcode=postcode&employees=counter&revenue=number&website=website&sales_rep=first_name&last_contacted=date&purchased=boolean&notes=text`;
+const fakerApiQueryKey = ["fakeapi", "data"];
+const fakerApiLocalstorageKey = "fakeapi:data";
+
+const fetchData = async (quantity: number) => {
+  console.log("hooks.useFakeapi.fetchData", { quantity });
+
+  const res = await fetch(fakerApiUrl(quantity), {
+    method: "GET",
+  });
+
+  console.log("hooks.useFakeapi.fetchData", { res });
+  if (!res.ok) {
+    console.error("Query error", { res });
+    throw `${res.statusText} (${res.status})`;
+  }
+
+  const data = await res.json();
+  console.log("hooks.useFakeapi.fetchData", { data });
+
+  if (data.status != "OK") {
+    console.error("Response status not ok", { status: data.status, code: data.code });
+    throw `Error code from fakerapi: ${data.code}`;
+  }
+
+  return data.data;
+}
 
 export default function useFakerApi({
   quantity
 }: {
   quantity?: number,
 } = {
-  quantity: 10,
+    quantity: fakerApiDefaultQuantity,
   }): any {
+  const queryClient = useQueryClient();
+
   const query = useQuery({
-    queryKey: [quantity],
+    queryKey: fakerApiQueryKey,
     queryFn: async () => {
       // pull from local storage
-      const cachedData = localStorage.getItem(`fakeapi:quantity=${quantity}`);
+      const cachedData = localStorage.getItem(fakerApiLocalstorageKey);
       if (cachedData) {
         return JSON.parse(cachedData);
       }
 
-      const res = await fetch(`https://Xfakerapi.it/api/v2/custom?_quantity=${quantity}&company=company_name&country=country&state=state&city=city&zipcode=postcode&employees=counter&revenue=number&website=website&sales_rep=first_name&last_contacted=date&purchased=boolean&notes=text`, {
-        method: "GET",
-      });
-
-      console.log("hooks.useFakeapi useQuery.queryFn", { res });
-      if (!res.ok) {
-        console.error("Query error", { res });
-        throw `${res.statusText} (${res.status})`;
-      }
-
-      const data = await res.json();
-      console.log("hooks.useFakeapi useQuery.queryFn", { data });
-
-      if (data.status != "OK") {
-        console.error("Response status not ok", { status: data.status, code: data.code });
-        throw `Error code from fakerapi: ${data.code}`;
-      }
-
-      const transformedData = data.data;
+      const data = await fetchData(fakerApiDefaultQuantity);
 
       // save to localstorage
-      localStorage.setItem(`fakeapi:quantity=${quantity}`, JSON.stringify(transformedData));
+      localStorage.setItem(fakerApiLocalstorageKey, JSON.stringify(data));
 
-      return transformedData;
+      return data;
     },
   });
 
-  // TODO mutate, reset
+  const reload = () => {
+    console.log("hooks.useFakerApi reload", {});
+    localStorage.removeItem(fakerApiLocalstorageKey);
+    queryClient.resetQueries({ queryKey: fakerApiQueryKey });
+  }
 
-  return { query };
+  const add = async () => {
+    const previousData = queryClient.getQueryData(fakerApiQueryKey) as any[];
+    console.log("hooks.useFakerApi add", { previousData });
+
+    const data = await fetchData(1);
+
+    const updatedData = [
+      ...previousData,
+      ...data,
+    ];
+
+    localStorage.setItem(fakerApiLocalstorageKey, JSON.stringify(updatedData));
+    queryClient.setQueryData(fakerApiQueryKey, updatedData);
+  }
+
+  // TODO mutate
+
+  return { query, reload, add };
 }
