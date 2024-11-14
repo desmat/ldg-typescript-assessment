@@ -65,3 +65,8 @@
 .About, .NotFound {
   margin: auto;
 }
+
+.Chart .card-title {
+  font-size: 100%;
+  font-weight: bold
+}
