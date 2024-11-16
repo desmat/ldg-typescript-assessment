@@ -29,7 +29,7 @@ export default function useBinance({
       console.log("hooks.useBinance useQuery.queryFn", { res });
       if (!res.ok) {
         console.error("Query error", { res });
-        throw `${res.statusText} (${res.status})`;
+        throw Error(`${res.statusText} (${res.status})`);
       }
 
       const data = await res.json();

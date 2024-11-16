@@ -30,6 +30,7 @@ export default function AddFakerApiData() {
               return [name, error];
             }
           }
+          return undefined;
         })
         .filter(Boolean)
     );
@@ -46,7 +47,7 @@ export default function AddFakerApiData() {
       Object.entries(FakerApiFieldDefinitions)
         .map(([name, def]) => [
           name,
-          def.type == "boolean"
+          def.type === "boolean"
             ? form && form.elements[name]?.checked
             : form && form.elements[name]?.value,
         ])
@@ -78,7 +79,7 @@ export default function AddFakerApiData() {
       >
         {Object.entries(FakerApiFieldDefinitions).map(([name, def]) => (
           <div key={name}>
-            {def.type == "boolean" &&
+            {def.type === "boolean" &&
               <Form.Group className="mb-3" controlId={name}>
                 <Form.Check
                   type="checkbox"
@@ -87,7 +88,7 @@ export default function AddFakerApiData() {
                 />
               </Form.Group>
             }
-            {def.type == "textarea" &&
+            {def.type === "textarea" &&
               <FloatingLabel controlId={name} label={name}>
                 <Form.Control
                   as="textarea"

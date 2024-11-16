@@ -1,3 +1,4 @@
+import useResizeObserver from '@react-hook/resize-observer'
 import * as echarts from 'echarts';
 import { useEffect, useRef, useState } from "react";
 
@@ -8,36 +9,29 @@ export default function Chart({
   option: any,
   loading?: boolean,
 }) {
-  let [chart, setChart] = useState<any>()
+  const [chart, setChart] = useState<any>()
   const chartRef = useRef<any>();
   console.log("components.charts.Chart", { chartRef });
 
-  const resizeObserver = new window.ResizeObserver((entries) => {
-    entries.map(({ target }: { target: any }) => {
-      const instance = echarts.getInstanceByDom(target);
-      if (instance) {
-        instance.resize();
-      }
-    });
-  });
+  useResizeObserver(chartRef.current, () => chart && chart.resize());
 
   useEffect(() => {
     console.log("components.charts.Chart useEffect", { option });
 
-    if (!chart) {
-      chart = echarts.init(chartRef.current);
-      resizeObserver.observe(chartRef.current);
-      setChart(chart);
+    let c = chart;
+    if (!c) {
+      c = echarts.init(chartRef.current);
+      setChart(c);
     }
 
-    chart.setOption(option, true);
+    c.setOption(option, true);
 
     if (loading) {
-      chart.showLoading();
+      c.showLoading();
     } else {
-      chart.hideLoading();
+      c.hideLoading();
     }
-  }, [option, loading]);
+  }, [option, loading, chart]);
 
   return (
       <div

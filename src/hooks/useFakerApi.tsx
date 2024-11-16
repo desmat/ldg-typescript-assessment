@@ -2,11 +2,17 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
+import { FakerApiFieldDefinitions } from '../types/FakerApi';
 
-const fakerApiDefaultQuantity = 10
-const fakerApiUrl = (quantity?: number) => `https://fakerapi.it/api/v2/custom?_quantity=${quantity || fakerApiDefaultQuantity}&company=company_name&country=country&state=state&city=city&zipcode=postcode&employees=counter&revenue=number&website=website&sales_rep=first_name&last_contacted=date&purchased=boolean&notes=text`;
 const fakerApiQueryKey = ["fakeapi", "data"];
 const fakerApiLocalstorageKey = "fakeapi:data";
+const fakerApiDefaultQuantity = 10
+const fakerApiUrl = (quantity?: number) => {
+  const fields = Object.entries(FakerApiFieldDefinitions)
+    .map(([k, v]) => [k, v.fakerApiType].join("="))
+    .join("&");
+  return `https://fakerapi.it/api/v2/custom?_quantity=${quantity || fakerApiDefaultQuantity}&${fields}`;
+};
 
 const fetchData = async (quantity: number) => {
   console.log("hooks.useFakeapi.fetchData", { quantity });
@@ -18,15 +24,15 @@ const fetchData = async (quantity: number) => {
   console.log("hooks.useFakeapi.fetchData", { res });
   if (!res.ok) {
     console.error("Query error", { res });
-    throw `${res.statusText} (${res.status})`;
+    throw Error(`${res.statusText} (${res.status})`);
   }
 
   const data = await res.json();
   console.log("hooks.useFakeapi.fetchData", { data });
 
-  if (data.status != "OK") {
+  if (data.status !== "OK") {
     console.error("Response status not ok", { status: data.status, code: data.code });
-    throw `Error code from fakerapi: ${data.code}`;
+    throw Error(`Error code from fakerapi: ${data.code}`);
   }
 
   return data.data;

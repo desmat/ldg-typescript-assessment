@@ -1,6 +1,6 @@
 
 export function validateZipcode(val: string) {
-  if (!val.match(/^\d{5}(\-\d{4})?$/)) {
+  if (!val.match(/^\d{5}(-\d{4})?$/)) {
     return "Invalid zipcode";
   }
 }
