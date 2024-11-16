@@ -65,22 +65,26 @@ export default function useFakerApi({
     queryClient.resetQueries({ queryKey: fakerApiQueryKey });
   }
 
-  const add = async () => {
-    const previousData = queryClient.getQueryData(fakerApiQueryKey) as any[];
-    console.log("hooks.useFakerApi add", { previousData });
+  const randomData = async (numRows: number = 1): Promise<{ [index: string]: any }[]> => {
+    return fetchData(numRows);
+  }
 
-    const data = await fetchData(1);
+  const add = async (entry: any): Promise<{ [index: string]: any }[]> => {
+    const previousData = queryClient.getQueryData(fakerApiQueryKey) as any[];
+    console.log("hooks.useFakerApi add", { entry, previousData });
+
+    // TODO add or update
 
     const updatedData = [
       ...previousData,
-      ...data,
+      entry,
     ];
 
     localStorage.setItem(fakerApiLocalstorageKey, JSON.stringify(updatedData));
     queryClient.setQueryData(fakerApiQueryKey, updatedData);
+
+    return updatedData;
   }
 
-  // TODO mutate
-
-  return { query, reload, add };
+  return { query, reload, randomData, add };
 }

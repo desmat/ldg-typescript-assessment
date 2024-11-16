@@ -114,3 +114,8 @@
     display: flex;
     justify-content: end;
 }
+
+.form-floating input, textarea { 
+  padding: 3rem 0.75rem 1.5rem 0.75rem !important;
+  font-size: 16pt;
+}

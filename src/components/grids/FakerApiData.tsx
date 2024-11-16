@@ -60,7 +60,7 @@ export default function FakerApiData({
     return (
       <Stack direction="horizontal" gap={2} className="d-flex justify-content-center">
         <Link to="#" onClick={reload}>[Reload]</Link>
-        <Link to="#" onClick={add}>[Add]</Link>
+        <Link to="fakerapi/add">[Add Record]</Link>
         </Stack>
     )
   }
