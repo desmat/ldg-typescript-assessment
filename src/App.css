@@ -1,3 +1,21 @@
+/* bootstrap tweaks */
+
+.form-check {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-floating input,
+textarea {
+  padding: 3.25rem 0.75rem 1.5rem 0.75rem !important;
+  font-size: 16pt;
+}
+
+.btn {
+  font-weight: 600;
+  font-size: 16pt;
+}
+
 
 .App {
   text-align: center;
@@ -26,15 +44,25 @@
   color: white;
 }
 
-.Nav *, .Nav a {
+.Nav *,
+.Nav a,
+.NavFooter {
   color: white;
+  font-size: 16pt;
+  font-weight: 500;
+}
+
+.Nav a,
+.NavFooter a {
+  font-weight: 600;
 }
 
 .Page {
   height: 100vh;
 }
 
-.Page-header, .Page-footer {
+.Page-header,
+.Page-footer {
   background: #282c34;
   color: white;
 }
@@ -54,7 +82,7 @@
   color: #282c34;
 }
 
-.Page-body > div {
+.Page-body>div {
   padding: 0.5rem;
 }
 
@@ -62,7 +90,8 @@
   text-align: left;
 }
 
-.About, .NotFound {
+.About,
+.NotFound {
   margin: auto;
 }
 
@@ -81,6 +110,11 @@
   max-width: calc(1000px - 32px); /* 16px either side */
 }
 
+.DashboardCard .card-footer {
+  background-color: white;
+  border: none;
+}
+
 /* 
   note: very tricky to get scrolling working inside cards: 
   careful with min/max height/width and overlfow 
@@ -93,7 +127,8 @@
   overflow-y: scroll;
 }
 
-.Grid .ag-root-wrapper-body, .Grid .ag-root-wrapper-body.ag-layout-normal {
+.Grid .ag-root-wrapper-body,
+.Grid .ag-root-wrapper-body.ag-layout-normal {
   height: 100%;
 }
 
@@ -111,11 +146,6 @@
 }
 
 .Grid .ag-cell.align-right {
-    display: flex;
-    justify-content: end;
-}
-
-.form-floating input, textarea { 
-  padding: 3rem 0.75rem 1.5rem 0.75rem !important;
-  font-size: 16pt;
+  display: flex;
+  justify-content: end;
 }

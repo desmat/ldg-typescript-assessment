@@ -1,7 +1,7 @@
 import { ValueFormatterParams } from "@ag-grid-community/core";
 import moment from "moment";
-import { Stack } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Button, Stack } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import DashboardCard from "../DashboardCard";
 import Grid from "./Grid";
 
@@ -25,7 +25,7 @@ function formatNumber(number: number) {
 export default function FakerApiData({
   data,
   loading,
-  reload, 
+  reload,
   add,
 }: {
   data: any[],
@@ -33,6 +33,8 @@ export default function FakerApiData({
   reload?: () => void,
   add?: () => void,
 }) {
+  const navigate = useNavigate();
+
   const options = {
     rowData: data,
     columnDefs: [
@@ -59,9 +61,9 @@ export default function FakerApiData({
   const Footer = () => {
     return (
       <Stack direction="horizontal" gap={2} className="d-flex justify-content-center">
-        <Link to="#" onClick={reload}>[Reload]</Link>
-        <Link to="fakerapi/add">[Add Record]</Link>
-        </Stack>
+        <Button variant="outline-secondary" onClick={reload}>Reload</Button>
+        <Button variant="outline-secondary" onClick={() => navigate("fakerapi/add")}>Add Record</Button>
+      </Stack>
     )
   }
 

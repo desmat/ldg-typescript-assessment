@@ -1,6 +1,5 @@
 import moment from 'moment';
-import { Stack } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+import { Button, Stack } from "react-bootstrap";
 import DashboardCard from '../DashboardCard';
 import Chart from './Chart';
 
@@ -36,7 +35,7 @@ export default function BitcoinClosingPrices({
   const Footer = () => {
     return (
       <Stack direction="horizontal" gap={2} className="d-flex justify-content-center">
-        <Link to="#" onClick={reload}>[Reload]</Link>
+        <Button variant="outline-secondary" onClick={reload}>Reload</Button>
       </Stack>
     )
   }

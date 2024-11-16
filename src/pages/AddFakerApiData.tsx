@@ -62,9 +62,13 @@ export default function AddFakerApiData() {
   const Footer = () => {
     return (
       <Stack direction="horizontal" gap={2} className="d-flex justify-content-center">
-        <Link to="/" >[Back]</Link>
-        <Link to="#" onClick={loadRandomData} >[Load Random]</Link>
-        <Button variant="primary" type="submit">
+        <Button variant="outline-secondary" onClick={() => navigate("/")} >
+          Back
+        </Button>
+        <Button variant="outline-secondary" onClick={loadRandomData} >
+          Load Random
+        </Button>
+        <Button variant="outline-primary" type="submit">
           Submit
         </Button>
       </Stack>

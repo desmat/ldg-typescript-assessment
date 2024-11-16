@@ -6,7 +6,7 @@ export type FakerApiFieldDefinition = {
   required?: boolean,
   validateFn?: any,
 };
-// &company=&=&state=&city=&zipcode=&employees=&revenue=&website=&sales_rep=&last_contacted=date&purchased=boolean&notes=text
+
 export const FakerApiFieldDefinitions: { [index: string]: FakerApiFieldDefinition } = {
   "company": {
     type: "text",
