@@ -1,7 +1,7 @@
 import { kvArrayToObject } from "@desmat/utils";
 import { useState } from "react";
 import { Button, FloatingLabel, Form, Stack } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DashboardCard from "../components/DashboardCard";
 import useFakerApi from "../hooks/useFakerApi";
 import { FakerApiFieldDefinitions } from "../types/FakerApi";

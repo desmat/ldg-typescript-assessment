@@ -54,7 +54,7 @@ export function lookupEntryId (entry: any, lookups: any) {
     // if we matched field value in enough field value lookups ( FAKER_API_MIN_LOOKUP_FIELDS)
     // and intersection across all returned exactly 1 then we have a matching entry id
 
-    if (matchingIds && matchingIds.size == 1) {
+    if (matchingIds && matchingIds.size === 1) {
       matchingId = Array.from(matchingIds)[0] as string;
     }
 

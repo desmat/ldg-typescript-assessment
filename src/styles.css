@@ -57,6 +57,21 @@ textarea {
   font-weight: 600;
 }
 
+.NavFooter .NavFooterContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;  
+}
+
+.NavFooter .NavFooterContent .github {
+  display: flex;
+  flex-direction: row;
+  justify-content: baseline;
+  align-items: center;
+  gap: 0.25rem;
+}
+
 .Page {
   height: 100vh;
 }
@@ -93,6 +108,33 @@ textarea {
 .About,
 .NotFound {
   margin: auto;
+}
+
+.About {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  max-width: 1200px;
+}
+
+.About p.justify {
+  text-align: justify;
+}
+
+.About p.left {
+  text-align: left;
+}
+
+.About p.Logo {
+  text-align: center;
+}
+
+.About a {
+  font-weight: 600;
+}
+
+.About a:hover {
+  text-decoration: underline;
 }
 
 .DashboardCard .card .card-title {

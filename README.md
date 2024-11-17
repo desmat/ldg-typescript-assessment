@@ -1,6 +1,9 @@
 # ldg-typescript-assessment
 
-Submission for https://github.com/LegionDevelopmentGroup/typescript-assessment
+Submission to Legion Development Group Inc.'s Typescript Assessment.
+
+Instructions: [LegionDevelopmentGroup/typescript-assessment](https://github.com/LegionDevelopmentGroup/typescript-assessment)
+Submission: [desmat/ldg-typescript-assessment](https://github.com/desmat/ldg-typescript-assessment)
 
 ## Available Scripts
 
