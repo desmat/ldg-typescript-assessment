@@ -17,10 +17,10 @@ const fakerApiUrl = (quantity?: number) => {
 };
 
 const fetchData = async (quantity: number) => {
-  console.log("hooks.useFakerApi.fetchData", { quantity });
+  // console.log("hooks.useFakerApi.fetchData", { quantity });
 
   const res = await fetch(fakerApiUrl(quantity));
-  console.log("hooks.useFakerApi.fetchData", { res });
+  // console.log("hooks.useFakerApi.fetchData", { res });
   
   if (!res.ok) {
     console.error("Query error", { res });
@@ -28,7 +28,7 @@ const fetchData = async (quantity: number) => {
   }
 
   const data = await res.json();
-  console.log("hooks.useFakerApi.fetchData", { data });
+  // console.log("hooks.useFakerApi.fetchData", { data });
 
   if (data.status !== "OK") {
     console.error("Response status not ok", { status: data.status, code: data.code });
@@ -59,7 +59,7 @@ export default function useFakerApi({
       const data = await fetchData(quantity);
       const { indexedData, lookups } = buildIndexAndLookups(data);
 
-      console.log("hooks.useFakerApi.query", { data, indexedData, lookups });
+      // console.log("hooks.useFakerApi.query", { data, indexedData, lookups });
 
       const dataAndLookups = {
         data: indexedData,
@@ -74,7 +74,7 @@ export default function useFakerApi({
   });
 
   const reload = () => {
-    console.log("hooks.useFakerApi reload", {});
+    // console.log("hooks.useFakerApi reload", {});
     localStorage.removeItem(fakerApiLocalstorageKey);
     queryClient.resetQueries({ queryKey: fakerApiQueryKey });
   }
@@ -85,10 +85,9 @@ export default function useFakerApi({
 
   const add = async (entry: any): Promise<any> => {
     const { data: previousData, lookups } = queryClient.getQueryData(fakerApiQueryKey) as any;
-    console.log("hooks.useFakerApi add", { entry, previousData, lookups });
+    // console.log("hooks.useFakerApi add", { entry, previousData, lookups });
 
     const entryId = lookupEntryId(entry, lookups) || hash(entry);
-    // return undefined;
 
     const updatedData = {
       ...previousData,

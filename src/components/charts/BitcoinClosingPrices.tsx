@@ -12,7 +12,7 @@ export default function BitcoinClosingPrices({
   loading?: boolean,
   reload?: () => void,
 }) {
-  console.log("components.charts.BitcoinClosingPrices", { data, loading });
+  // console.log("components.charts.BitcoinClosingPrices", { data, loading });
 
   const option = {
     xAxis: {

@@ -3,24 +3,24 @@
 .form-check {
   display: flex;
   gap: 1rem;
+  font-size: 12pt;
 }
 
 .form-floating input,
-textarea {
-  padding: 3.25rem 0.75rem 1.5rem 0.75rem !important;
-  font-size: 16pt;
+.form-floating textarea,
+.form-floating label {
+  font-size: 12pt;
 }
 
 .btn {
   font-weight: 600;
-  font-size: 16pt;
+  font-size: 12pt !important;
 }
 
 
 .App {
   text-align: center;
   height: 100vh;
-
 }
 
 .App a {
@@ -48,7 +48,7 @@ textarea {
 .Nav a,
 .NavFooter {
   color: white;
-  font-size: 16pt;
+  font-size: 12pt;
   font-weight: 500;
 }
 
@@ -103,6 +103,7 @@ textarea {
 
 .Dashboard {
   text-align: left;
+  width: "100%";
 }
 
 .About,
@@ -115,6 +116,7 @@ textarea {
   flex-direction: column; 
   justify-content: center;
   max-width: 1200px;
+  font-size: 12pt;
 }
 
 .About p.justify {
@@ -138,8 +140,9 @@ textarea {
 }
 
 .DashboardCard .card .card-title {
-  font-size: 100%;
-  font-weight: bold
+  font-size: 14pt;
+  font-weight: 800;
+  text-align: center;
 }
 
 .DashboardCard .card {

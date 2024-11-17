@@ -54,7 +54,6 @@ export default function FakerApiData({
     ],
     defaultColDef: {
       flex: 5,
-      tooltipShowDelay: 0,
     },
   };
 

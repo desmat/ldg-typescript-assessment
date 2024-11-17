@@ -16,7 +16,7 @@ export default function Chart({
   options: GridOptions<any>,
   loading?: boolean,
 }) {
-  console.log("components.grids.Grid", { options });
+  // console.log("components.grids.Grid", { options });
 
   return (
     <div className="Grid ag-theme-quartz">

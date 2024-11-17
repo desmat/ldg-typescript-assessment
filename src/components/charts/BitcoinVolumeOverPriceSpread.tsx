@@ -11,7 +11,7 @@ export default function BitcoinVolumeOverPriceSpread({
   loading?: boolean,
   reload?: () => void,
 }) {
-  console.log("components.charts.BitcoinClosingPrices", { data, loading });
+  // console.log("components.charts.BitcoinClosingPrices", { data, loading });
 
   const option = {
     xAxis: {

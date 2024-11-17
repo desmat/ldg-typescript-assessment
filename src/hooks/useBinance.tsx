@@ -30,7 +30,7 @@ export default function useBinance({
     staleTime: 5 * 60 * 1000, // 5 mins
     queryFn: async () => {
       const res = await fetch(`${BINANCE_BASE_URL}?symbol=${symbol}&interval=${interval}&limit=${limit}`);
-      console.log("hooks.useBinance useQuery.queryFn", { res });
+      // console.log("hooks.useBinance useQuery.queryFn", { res });
 
       if (!res.ok) {
         console.error("Query error", { res });
@@ -38,8 +38,7 @@ export default function useBinance({
       }
 
       const data = await res.json();
-      console.log("hooks.useBinance useQuery.queryFn", { data });
-      // return data;
+      // console.log("hooks.useBinance useQuery.queryFn", { data });
 
       return {
         // for analyzing response

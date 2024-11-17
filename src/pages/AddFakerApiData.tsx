@@ -35,7 +35,7 @@ export default function AddFakerApiData() {
         .filter(Boolean)
     );
 
-    console.log("validationErrors", { validationErrors })
+    // console.log("validationErrors", { validationErrors })
 
     setValidationErrors(validationErrors);
 
@@ -53,7 +53,7 @@ export default function AddFakerApiData() {
         ])
     );
 
-    console.log("pages.AddFakerApiData.submit", { record, validated: form && form.checkValidity() })
+    // console.log("pages.AddFakerApiData.submit", { record, validated: form && form.checkValidity() })
 
     await add(record);
     navigate("/");

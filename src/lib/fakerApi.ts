@@ -2,7 +2,7 @@ import hash from 'object-hash';
 import { FAKER_API_MIN_LOOKUP_FIELDS, FakerApiFieldDefinitions } from "../types/FakerApi";
 
 export function addLookup(id: string, entry: any, lookups: any) {
-  console.log("lib.fakerApi.addLookup", { id, entry, lookups });
+  // console.log("lib.fakerApi.addLookup", { id, entry, lookups });
   Object.entries(entry)
     .forEach(([key, val]: [string, any]) => {
       if (typeof (val) != "undefined" && FakerApiFieldDefinitions[key]?.lookup) {
@@ -12,7 +12,7 @@ export function addLookup(id: string, entry: any, lookups: any) {
         lookup[val] = ids;
         lookups[key] = lookup;
 
-        console.log("lib.fakerApi.addLookup", { id, ids, lookup, lookups });
+        // console.log("lib.fakerApi.addLookup", { id, ids, lookup, lookups });
       }
     });
 };
@@ -34,7 +34,7 @@ export function lookupEntryId (entry: any, lookups: any) {
   const previousEntryIds = Object.entries(FakerApiFieldDefinitions)
     .map(([key, def]) => {
       if (typeof (entry[key]) != "undefined" && def?.lookup) {
-        console.log("lib.fakerApi.add", { key, lookups_key: lookups[key], entry_key: entry[key], lookups_entry: lookups[key][entry[key]] });
+        // console.log("lib.fakerApi.add", { key, lookups_key: lookups[key], entry_key: entry[key], lookups_entry: lookups[key][entry[key]] });
         return lookups[key][entry[key]]
       }
       return undefined;
@@ -49,7 +49,7 @@ export function lookupEntryId (entry: any, lookups: any) {
         ? accumulator.intersection(new Set(currentValue))
         : new Set(currentValue),
       undefined);
-    console.log("lib.fakerApi.add", { matchingIds });
+    // console.log("lib.fakerApi.add", { matchingIds });
 
     // if we matched field value in enough field value lookups ( FAKER_API_MIN_LOOKUP_FIELDS)
     // and intersection across all returned exactly 1 then we have a matching entry id
@@ -58,7 +58,7 @@ export function lookupEntryId (entry: any, lookups: any) {
       matchingId = Array.from(matchingIds)[0] as string;
     }
 
-    console.log("lib.fakerApi.add", { matchingId });
+    // console.log("lib.fakerApi.add", { matchingId });
   }
 
   return matchingId;

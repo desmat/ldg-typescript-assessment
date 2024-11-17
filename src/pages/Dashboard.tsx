@@ -1,19 +1,18 @@
-import useBinance from "../hooks/useBinance";
-import useFakerApi from "../hooks/useFakerApi";
-
+import { Stack } from "react-bootstrap";
 import BitcoinClosingPrices from "../components/charts/BitcoinClosingPrices";
 import FakeapiData from "../components/grids/FakerApiData";
 import BitcoinVolumeOverPriceSpread from "../components/charts/BitcoinVolumeOverPriceSpread";
-import { Stack } from "react-bootstrap";
+import useBinance from "../hooks/useBinance";
+import useFakerApi from "../hooks/useFakerApi";
 
 export default function Dashboard() {
   const { query: binanceQuery, reload: reloadBinance } = useBinance();
   const { query: fakerapiQuery, reload: reloadFakerApi, add: addFakerApiRow } = useFakerApi();
-  console.log("pages.Dashboard", { binanceQuery, fakerapiQuery });
+  // console.log("pages.Dashboard", { binanceQuery, fakerapiQuery });
 
   return (
-    <div className="Dashboard" style={{ width: "100%" }}>
-      <Stack gap={3} className="d-flex justify-content-center" style={{ width: "100%" }}>
+    <div className="Dashboard">
+      <Stack gap={3} className="d-flex justify-content-center">
         {binanceQuery.error &&
           <p><i>Error: {binanceQuery.error}</i></p>
         }

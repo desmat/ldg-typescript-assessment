@@ -11,12 +11,12 @@ export default function Chart({
 }) {
   const [chart, setChart] = useState<any>()
   const chartRef = useRef<any>();
-  console.log("components.charts.Chart", { chartRef });
+  // console.log("components.charts.Chart", { chartRef });
 
   useResizeObserver(chartRef.current, () => chart && chart.resize());
 
   useEffect(() => {
-    console.log("components.charts.Chart useEffect", { option });
+    // console.log("components.charts.Chart useEffect", { option });
 
     let c = chart;
     if (!c) {

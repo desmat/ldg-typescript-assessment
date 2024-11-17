@@ -9,7 +9,7 @@ export default function NavHeader() {
         <div className="p-2 flex ">
           <Link to="/">
             <Stack direction="horizontal" gap={2}>
-              <Logo fill="white" height="3rem" />
+              <Logo fill="white" height="2rem" />
               <div><b>LDG Typescript Assessement</b></div>
             </Stack>
           </Link>
