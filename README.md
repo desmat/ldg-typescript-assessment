@@ -6,6 +6,12 @@ Instructions: [LegionDevelopmentGroup/typescript-assessment](https://github.com/
 Submission: [desmat/ldg-typescript-assessment](https://github.com/desmat/ldg-typescript-assessment)<br/>
 Deployed: [ldg-typescript-assessment.desmat.ca](https://ldg-typescript-assessment.desmat.ca/)
 
+## Getting Started
+
+### `npm install` 
+
+Installs all dependencies needed to run any of the available scripts below.
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -18,9 +24,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm run build`
+### `npm install` and `npm run build`
 
-Builds the app for production to the `build` folder.\
+Installs all dependencies adn builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.\
