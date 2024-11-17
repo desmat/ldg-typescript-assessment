@@ -1,0 +1,151 @@
+/* bootstrap tweaks */
+
+.form-check {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-floating input,
+textarea {
+  padding: 3.25rem 0.75rem 1.5rem 0.75rem !important;
+  font-size: 16pt;
+}
+
+.btn {
+  font-weight: 600;
+  font-size: 16pt;
+}
+
+
+.App {
+  text-align: center;
+  height: 100vh;
+
+}
+
+.App a {
+  color: #282c34;
+  text-decoration: none;
+}
+
+.App a:hover {
+  text-decoration: underline;
+}
+
+.App-header {
+  background-color: #282c34;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Nav *,
+.Nav a,
+.NavFooter {
+  color: white;
+  font-size: 16pt;
+  font-weight: 500;
+}
+
+.Nav a,
+.NavFooter a {
+  font-weight: 600;
+}
+
+.Page {
+  height: 100vh;
+}
+
+.Page-header,
+.Page-footer {
+  background: #282c34;
+  color: white;
+}
+
+.Page-body {
+  background: purple;
+  height: 100vh;
+  overflow: scroll;
+
+  background-color: white;
+  /* min-height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: calc(10px + 2vmin);
+  color: #282c34;
+}
+
+.Page-body>div {
+  padding: 0.5rem;
+}
+
+.Dashboard {
+  text-align: left;
+}
+
+.About,
+.NotFound {
+  margin: auto;
+}
+
+.DashboardCard .card .card-title {
+  font-size: 100%;
+  font-weight: bold
+}
+
+.DashboardCard .card {
+  max-width: 1000px;
+}
+
+.DashboardCard .card .card-text {
+  width: calc(100vw - 64px); /* 16px either side, inside and outside card */
+  min-width: 400px;
+  max-width: calc(1000px - 32px); /* 16px either side */
+}
+
+.DashboardCard .card-footer {
+  background-color: white;
+  border: none;
+}
+
+/* 
+  note: very tricky to get scrolling working inside cards: 
+  careful with min/max height/width and overlfow 
+*/
+
+.Grid {
+  min-height: 200px;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.Grid .ag-root-wrapper-body,
+.Grid .ag-root-wrapper-body.ag-layout-normal {
+  height: 100%;
+}
+
+.Grid .ag-root-wrapper {
+  min-width: 2500px;
+}
+
+.Grid .ag-body-viewport {
+  max-height: 400px;
+}
+
+.Grid .ag-cell.align-center {
+  display: flex;
+  justify-content: center;
+}
+
+.Grid .ag-cell.align-right {
+  display: flex;
+  justify-content: end;
+}
