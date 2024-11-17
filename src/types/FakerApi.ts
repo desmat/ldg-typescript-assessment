@@ -1,9 +1,17 @@
-import { validateNumber, validateWebsite, validateZipcode } from "../lib/validation";
+import {
+  validateNumber,
+  validateWebsite,
+  validateZipcode
+} from "../lib/validation";
+
+export const FAKER_API_BASE_URL = "https://fakerapi.it/api/v2/custom";
+export const FAKER_API_MIN_LOOKUP_FIELDS = 5;
 
 export type FakerApiFieldDefinition = {
   type: string,
   fakerApiType: string,
   required?: boolean,
+  lookup?: boolean,
   validateFn?: any,
 };
 
@@ -12,26 +20,31 @@ export const FakerApiFieldDefinitions: { [index: string]: FakerApiFieldDefinitio
     type: "text",
     fakerApiType: "company_name",
     required: true,
+    lookup: true,
   },
   "country": {
     type: "text",
     fakerApiType: "country",
     required: true,
+    lookup: true,
   },
   "state": {
     type: "text",
     fakerApiType: "state",
     required: true,
+    lookup: true,
   },
   "city": {
     type: "text",
     fakerApiType: "city",
     required: true,
+    lookup: true,
   },
   "zipcode": {
     type: "text",
     fakerApiType: "postcode",
     required: true,
+    lookup: true,
     validateFn: validateZipcode,
   },
   "employees": {
@@ -50,6 +63,7 @@ export const FakerApiFieldDefinitions: { [index: string]: FakerApiFieldDefinitio
     type: "text",
     fakerApiType: "website",
     required: true,
+    lookup: true,
     validateFn: validateWebsite,
   },
   "sales_rep": {
@@ -60,16 +74,13 @@ export const FakerApiFieldDefinitions: { [index: string]: FakerApiFieldDefinitio
   "last_contacted": {
     type: "date",
     fakerApiType: "date",
-    required: false,
   },
   "purchased": {
     type: "boolean",
     fakerApiType: "boolean",
-    required: false,
   },
   "notes": {
     type: "textarea",
     fakerApiType: "text",
-    required: false,
   },
 }

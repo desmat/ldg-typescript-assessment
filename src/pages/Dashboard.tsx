@@ -41,7 +41,7 @@ export default function Dashboard() {
         }
         {!fakerapiQuery.isError &&
           <FakeapiData
-           data={fakerapiQuery.data} 
+           data={fakerapiQuery.data?.data && Object.values(fakerapiQuery.data?.data)} 
            loading={!fakerapiQuery.isFetched}
            reload={reloadFakerApi}
            add={addFakerApiRow}

@@ -2,33 +2,33 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
-import { FakerApiFieldDefinitions } from '../types/FakerApi';
+import hash from 'object-hash';
+import { buildIndexAndLookups, lookupEntryId } from "../lib/fakerApi";
+import { FAKER_API_BASE_URL, FakerApiFieldDefinitions } from '../types/FakerApi';
 
 const fakerApiQueryKey = ["fakeapi", "data"];
 const fakerApiLocalstorageKey = "fakeapi:data";
-const fakerApiDefaultQuantity = 10
+const fakerApiDefaultQuantity = 10;
 const fakerApiUrl = (quantity?: number) => {
   const fields = Object.entries(FakerApiFieldDefinitions)
     .map(([k, v]) => [k, v.fakerApiType].join("="))
     .join("&");
-  return `https://fakerapi.it/api/v2/custom?_quantity=${quantity || fakerApiDefaultQuantity}&${fields}`;
+  return `${FAKER_API_BASE_URL}?_quantity=${quantity || fakerApiDefaultQuantity}&${fields}`;
 };
 
 const fetchData = async (quantity: number) => {
-  console.log("hooks.useFakeapi.fetchData", { quantity });
+  console.log("hooks.useFakerApi.fetchData", { quantity });
 
-  const res = await fetch(fakerApiUrl(quantity), {
-    method: "GET",
-  });
-
-  console.log("hooks.useFakeapi.fetchData", { res });
+  const res = await fetch(fakerApiUrl(quantity));
+  console.log("hooks.useFakerApi.fetchData", { res });
+  
   if (!res.ok) {
     console.error("Query error", { res });
     throw Error(`${res.statusText} (${res.status})`);
   }
 
   const data = await res.json();
-  console.log("hooks.useFakeapi.fetchData", { data });
+  console.log("hooks.useFakerApi.fetchData", { data });
 
   if (data.status !== "OK") {
     console.error("Response status not ok", { status: data.status, code: data.code });
@@ -41,7 +41,7 @@ const fetchData = async (quantity: number) => {
 export default function useFakerApi({
   quantity
 }: {
-  quantity?: number,
+  quantity: number,
 } = {
     quantity: fakerApiDefaultQuantity,
   }): any {
@@ -56,12 +56,20 @@ export default function useFakerApi({
         return JSON.parse(cachedData);
       }
 
-      const data = await fetchData(fakerApiDefaultQuantity);
+      const data = await fetchData(quantity);
+      const { indexedData, lookups } = buildIndexAndLookups(data);
+
+      console.log("hooks.useFakerApi.query", { data, indexedData, lookups });
+
+      const dataAndLookups = {
+        data: indexedData,
+        lookups,
+      }
 
       // save to localstorage
-      localStorage.setItem(fakerApiLocalstorageKey, JSON.stringify(data));
+      localStorage.setItem(fakerApiLocalstorageKey, JSON.stringify(dataAndLookups));
 
-      return data;
+      return dataAndLookups;
     },
   });
 
@@ -75,21 +83,32 @@ export default function useFakerApi({
     return fetchData(numRows);
   }
 
-  const add = async (entry: any): Promise<{ [index: string]: any }[]> => {
-    const previousData = queryClient.getQueryData(fakerApiQueryKey) as any[];
-    console.log("hooks.useFakerApi add", { entry, previousData });
+  const add = async (entry: any): Promise<any> => {
+    const { data: previousData, lookups } = queryClient.getQueryData(fakerApiQueryKey) as any;
+    console.log("hooks.useFakerApi add", { entry, previousData, lookups });
 
-    // TODO add or update
+    const entryId = lookupEntryId(entry, lookups) || hash(entry);
+    // return undefined;
 
-    const updatedData = [
+    const updatedData = {
       ...previousData,
-      entry,
-    ];
+      [entryId]: entry,
+    }
 
-    localStorage.setItem(fakerApiLocalstorageKey, JSON.stringify(updatedData));
-    queryClient.setQueryData(fakerApiQueryKey, updatedData);
+    const {
+      indexedData,
+      lookups: updatedLookups
+    } = buildIndexAndLookups(Object.values(updatedData));
 
-    return updatedData;
+    const dataAndLookups = {
+      data: indexedData,
+      lookups: updatedLookups,
+    }
+
+    localStorage.setItem(fakerApiLocalstorageKey, JSON.stringify(dataAndLookups));
+    queryClient.setQueryData(fakerApiQueryKey, dataAndLookups);
+
+    return dataAndLookups;
   }
 
   return { query, reload, randomData, add };

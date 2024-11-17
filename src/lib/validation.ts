@@ -12,7 +12,7 @@ export function validateWebsite(val: string) {
 }
 
 export function validateNumber(val: string) {
-  if (!val.match(/^\d+\.?\d*$/)) {
+  if (!val.match(/^-?\d+\.?\d*$/)) {
     return "Invalid number";
   }
 }
